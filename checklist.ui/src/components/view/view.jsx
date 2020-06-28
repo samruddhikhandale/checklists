@@ -18,6 +18,9 @@ import Alert from 'react-bootstrap/Alert';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faPlus } from '@fortawesome/free-solid-svg-icons';
 
+/**
+ * Critical component that displays the list. This is where the user can edit the list, add/update/remove/complete todo items.
+ */
 export default function View(props) {
     const [checklist, setChecklist] = useState();
     const [validated, setValidated] = useState(false);
@@ -26,15 +29,22 @@ export default function View(props) {
     const [showError, setShowError] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
 
+    /**
+     * Sets a local flag to indicate the items that are being saved to backend. This flag is used to show the spinner while saving.
+     */
     const handleItemSaving = useCallback((itemId, state) => {
         const itemSavingCopy = { ...itemSaving };
         itemSavingCopy[itemId] = state;
         setItemSaving(itemSavingCopy);
     }, [itemSaving]);
 
+    /***
+     * Save modifications made to a list item.
+     * Checkbox changes are saved as soon as the user cliks on it.
+     * Text/data changes are saved when the user fills in the field and focus out.
+     */
     const handleUpdateItem = useCallback(async (save, item) => {
         handleItemSaving(item._id, true);
-        // API call to update.
         try {
             let updatedItem = { ...item };
             console.log(save, item)
@@ -63,6 +73,9 @@ export default function View(props) {
         }
     }, [checklist, handleItemSaving]);
 
+    /**
+     * Delete an item from the list.
+     */
     const handleDeleteItem = useCallback(async (item) => {
         handleItemSaving(item._id, true);
         try {
@@ -88,6 +101,9 @@ export default function View(props) {
 
     }, [checklist, handleItemSaving]);
 
+    /**
+     * Add a new item to the list.
+     */
     const handleAddItem = useCallback(async () => {
         try {
             // API call to add.
@@ -106,6 +122,9 @@ export default function View(props) {
 
     }, [checklist]);
 
+    /**
+     * Save checklist when the changes as made to the checklist title.
+     */
     const handleUpdateChecklist = useCallback(async (event) => {
         setValidated(true);
         if (!event.target.value) {
@@ -126,6 +145,9 @@ export default function View(props) {
         }
     }, [checklist]);
 
+    /**
+     * Delete a checklist and automatically navigate the user to home page upon deletion.
+     */
     const handleDelete = useCallback(async (event) => {
         try {
             const id = checklist._id;
@@ -147,6 +169,9 @@ export default function View(props) {
         }
     }, [checklist, props.history]);
 
+    /**
+     * Effect to load the list on initial render as well as to refresh the list data periodically, so that simulaneous changes made by other users are reflected.
+     */
     useEffect(() => {
         const handleFetchChecklist = async () => {
             if (Date.now() - lastFetch > 5000) {
@@ -155,7 +180,7 @@ export default function View(props) {
                     const freshChecklist = await fetchChecklist(props.match.params.checklistId);
 
                     if (checklist && freshChecklist.lastUpdated <= checklist.lastUpdated) {
-                        return; // Data has not changed
+                        return; // Data has not changed.
                     }
 
                     setChecklist(freshChecklist);

@@ -5,10 +5,20 @@ import Button from 'react-bootstrap/Button';
 
 import { createChecklist } from '../../service';
 
+/**
+ * React componet that allows creation of a new checklist.
+ * 
+ * @param {*} props react props passed down from hoc.
+ */
 export default function Create(props) {
     const [validated, setValidated] = useState(false);
     const [title, setTitle] = useState('');
 
+    /**
+     * Submit form to create a new checklist.
+     * 
+     * @param event form submission event.
+     */
     const handleSubmit = async (event) => {
         event.preventDefault();
         event.stopPropagation();
@@ -23,7 +33,7 @@ export default function Create(props) {
                 props.history.push(`/view/${checklist._id}`);
             } catch (err) {
                 if (!err.message) {
-                    err.message = 'Failed to add the checklist item........';
+                    err.message = 'Failed to create the checklist.';
                 }
 
                 console.log(err);

@@ -3,6 +3,10 @@ import CardColumns from 'react-bootstrap/CardColumns';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 
+/**
+ * Component that displays recently accessed checklists on the landing page.
+ * Recent checlists are cached in browser's localstorage and are rendered in a cards view.
+ */
 export default function RecentChecklists() {
     const [checklists, setChecklists] = useState(JSON.parse(localStorage.getItem('recentChecklists')) || []);
 

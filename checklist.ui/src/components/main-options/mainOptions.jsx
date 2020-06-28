@@ -7,6 +7,9 @@ import Button from 'react-bootstrap/Button';
 import FormControl from 'react-bootstrap/FormControl';
 import InputGroup from 'react-bootstrap/InputGroup';
 
+/**
+ * Componet that shows mainoperations (create and access list), which is displayed on all screens.
+ */
 export default function MainOptions(props) {
     const [validated, setValidated] = useState(false);
     const [checklistId, setChecklistId] = useState();
