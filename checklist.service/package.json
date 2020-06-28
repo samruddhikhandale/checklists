@@ -1,10 +1,10 @@
 {
   "name": "checklist",
   "version": "1.0.0",
-  "description": "Shared Checklists",
-  "main": "server.js",
+  "description": "ShaDo - Shared Checklists",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "nodemon server.js"
   },
   "author": "Eljo Padannamackal George",
@@ -14,5 +14,9 @@
     "express": "^4.17.1",
     "mongodb": "^3.5.9",
     "mongoose": "^5.9.20"
+  },
+  "devDependencies": {
+    "jest": "^26.1.0",
+    "supertest": "^4.0.2"
   }
 }
