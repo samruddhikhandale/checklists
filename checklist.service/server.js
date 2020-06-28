@@ -5,7 +5,7 @@ const app = express();
 
 const API_ROUTE = '/api/checklists';
 
-//Database
+// Database
 mongoose.connect('mongodb://127.0.0.1:27017/checklistdb', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log("Connected to database"))
     .catch(err => console.log(err));
@@ -13,7 +13,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/checklistdb', { useNewUrlParser: tru
 // Make Mongoose use `findOneAndUpdate()`.
 mongoose.set('useFindAndModify', false);
 
-//Middleware
+// Middleware (CORS allowed)
 app.options('*', cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -23,10 +23,10 @@ app.use(function(req, res, next) {
     next();
   });
 
-//Controllers
+// Controllers
 const checklistController = require('./controllers/checklistController');
 
-//Routes
+// Routes
 app.post(API_ROUTE, checklistController.create);
 app.post(`${API_ROUTE}/:id/items`, checklistController.addItem);
 app.put(`${API_ROUTE}/:id`, checklistController.update);

@@ -5,10 +5,13 @@ import Col from 'react-bootstrap/Col';
 
 import logo from '../../logo.png';
 
+/**
+ * About / Info component.
+ */
 export default function About() {
     return (
         <div>
-            <h4>ShaDo - Easy to share checklists</h4>
+            <h4>ShaDo - Easy to share checklists / todos.</h4>
             <p>Creating, managing and sharing checklists / todo lists has never been easier.</p>
 
             <Row className="m-2">
