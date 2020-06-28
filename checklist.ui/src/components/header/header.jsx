@@ -9,7 +9,10 @@ import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import logo from '../../logo.png';
 import './header.css';
 
-export default function Header(props) {
+/**
+ * Page header with logo and title, to be displayed on all screens
+ */
+export default function Header() {
     return (
         <div>
             <Navbar bg="dark" variant="dark">

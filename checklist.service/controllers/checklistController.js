@@ -1,6 +1,9 @@
 const ChecklistModel = require('../models/checklistModel');
 
 module.exports = {
+    /**
+     * Create a new checklist.
+     */
     create: async (req, res) => {
         let checklist = new ChecklistModel({
             title: req.body.title,
@@ -18,6 +21,9 @@ module.exports = {
         }
     },
 
+    /**
+     * Update an existing checklist
+     */
     update: async (req, res) => {
         try {
             const checklistInput = { ...req.body, lastUpdated: Date.now() }
@@ -33,6 +39,9 @@ module.exports = {
         }
     },
 
+    /**
+     * Retrieve an checklist by id
+     */
     retrieve: async (req, res) => {
         try {
             const checklist = await ChecklistModel.findById(req.params.id);
@@ -47,6 +56,9 @@ module.exports = {
         }
     },
 
+    /**
+     * Delete a checklist by id
+     */
     delete: async (req, res) => {
         try {
             await ChecklistModel.deleteOne({ _id: req.params.id });
@@ -57,6 +69,9 @@ module.exports = {
         }
     },
 
+    /**
+     * Add an item to a checklist
+     */
     addItem: async (req, res) => {
         try {
             let checklist = await ChecklistModel.findById(req.params.id);
@@ -74,6 +89,9 @@ module.exports = {
         }
     },
 
+    /**
+     * Update an item in a checklist
+     */
     updateItem: async (req, res) => {
         try {
             const checklistItemInput = { "$set": { "listItems.$": { ...req.body, _id: req.params.itemId } }, lastUpdated: Date.now() }
@@ -89,6 +107,9 @@ module.exports = {
         }
     },
 
+    /**
+     * Delete an item from a checklist
+     */
     deleteItem: async (req, res) => {
         try {
             let checklist = await ChecklistModel.findById(req.params.id);
