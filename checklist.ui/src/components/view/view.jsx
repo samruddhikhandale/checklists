@@ -203,15 +203,13 @@ export default function View(props) {
                         let recentChecklists = JSON.parse(localStorage.getItem('recentChecklists')) || [];
                         recentChecklists = recentChecklists.filter((existingList) => existingList._id !== props.match.params.checklistId);
                         localStorage.setItem('recentChecklists', JSON.stringify(recentChecklists));
+                        setErrorMessage(err.message);
+                        setShowError(true);
                     }
                     else {
-                        if (!err.message) {
-                            err.message = 'Failed to fetch the checklist.';
-                        }
+                        setErrorMessage("The checklist you are trying to access is not valid or is unavailable.");
+                        setShowError(true);
                     }
-
-                    setErrorMessage(err.message);
-                    setShowError(true);
                 }
             }
         }
