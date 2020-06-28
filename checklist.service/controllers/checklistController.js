@@ -5,7 +5,7 @@ module.exports = {
         let checklist = new ChecklistModel({
             title: req.body.title,
             description: req.body.description,
-            lastUpdated: new Date(),
+            lastUpdated: Date.now(),
             listItems: req.body.listItems
         });
 
@@ -20,7 +20,7 @@ module.exports = {
 
     update: async (req, res) => {
         try {
-            const checklistInput = { ...req.body, lastUpdated: new Date() }
+            const checklistInput = { ...req.body, lastUpdated: Date.now() }
             const checklist = await ChecklistModel.findOneAndUpdate({ _id: req.params.id }, checklistInput, { new: true });
             if (!checklist) {
                 return res.status(404).send("No such checklist exists.");
@@ -49,7 +49,7 @@ module.exports = {
 
     delete: async (req, res) => {
         try {
-            await ChecklistModel.remove({ _id: req.body._id });
+            await ChecklistModel.deleteOne({ _id: req.params.id });
             return res.status(204).send();
         } catch (err) {
             console.log(err);
@@ -65,6 +65,7 @@ module.exports = {
             }
 
             checklist.listItems.push(req.body);
+            checklist.lastUpdated = Date.now();
             checklist = await checklist.save();
             return res.json(checklist.listItems.slice(-1)[0]);
         } catch (err) {
@@ -75,7 +76,7 @@ module.exports = {
 
     updateItem: async (req, res) => {
         try {
-            const checklistItemInput = { "$set": { "listItems.$": { ...req.body, _id: req.params.itemId } }, lastUpdated: new Date() }
+            const checklistItemInput = { "$set": { "listItems.$": { ...req.body, _id: req.params.itemId } }, lastUpdated: Date.now() }
             const checklist = await ChecklistModel.findOneAndUpdate({ _id: req.params.id, "listItems._id": req.params.itemId }, checklistItemInput, { new: true });
             if (!checklist) {
                 return res.status(404).send("No such checklist item exists.");
@@ -98,6 +99,7 @@ module.exports = {
             const item = checklist.listItems.id(req.params.itemId);
             if (item) {
                 item.remove();
+                checklist.lastUpdated = Date.now();
                 checklist = await checklist.save();
             }
             return res.status(204).send();
