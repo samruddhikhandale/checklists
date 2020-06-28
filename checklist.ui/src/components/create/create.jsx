@@ -41,7 +41,7 @@ export default function Create(props) {
                         Give a title to your list, so you remember what it is for.
                     </Form.Text>
                 </Form.Group >
-                <Button variant="primary" type="submit">
+                <Button variant="primary" type="submit" data-testid="create-button">
                     Create
                 </Button>
             </Form>

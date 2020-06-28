@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
 
-const PORT = 8080;
 const API_ROUTE = '/api/checklists';
 
 //Database
@@ -36,5 +35,4 @@ app.get(`${API_ROUTE}/:id`, checklistController.retrieve);
 app.delete(`${API_ROUTE}/:id`, checklistController.delete);
 app.delete(`${API_ROUTE}/:id/items/:itemId`, checklistController.deleteItem);
 
-//Start Server
-app.listen(PORT, () => console.log(`Server started on ${PORT}`));
+module.exports = app;

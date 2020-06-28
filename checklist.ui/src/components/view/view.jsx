@@ -7,7 +7,7 @@ import {
     updateItem,
     deleteItem,
     NotFoundError
-} from '../../service'
+} from '../../service';
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -214,6 +214,7 @@ export default function View(props) {
                     <Form.Group controlId="formGridTitle">
                         <InputGroup>
                             <Form.Control
+                                data-testid="checklist-title"
                                 placeholder="Enter title"
                                 value={checklist?.title || ''}
                                 onChange={(e) => { setChecklist({ ...checklist, title: e.target.value }); }}
