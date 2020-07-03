@@ -19,7 +19,7 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-        <Container>
+        <Container fluid>
           <Header />
 
           <Row className="mt-3">
