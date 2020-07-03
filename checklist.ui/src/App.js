@@ -19,8 +19,8 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-        <Container fluid>
-          <Header />
+        <Header />
+        <Container>
 
           <Row className="mt-3">
             <Col>
