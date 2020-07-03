@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Deploying ShaDoApp"
+echo "Building ShaDoApp"
 
 cd checklist.ui
 npm install
@@ -14,4 +14,4 @@ cd checklist.service
 npm install
 cd ..
 
-echo "Deployed ShaDoApp"
+echo "Built ShaDoApp"

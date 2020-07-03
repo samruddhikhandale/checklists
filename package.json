@@ -4,9 +4,9 @@
     "description": "ShaDo App main",
     "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1",
-      "build": "echo \"Dummy build completed\" && exit 0"
+      "build": "build.sh",
+      "start": "npm start --prefix ./checklist.service"
     },
     "author": "Eljo Padannamackal George",
     "license": "MIT"
   }
-  

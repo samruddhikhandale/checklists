@@ -1,2 +1,1 @@
-release: ./deploy.sh
-web: npm start --prefix ./checklist.service/
+web: npm start
