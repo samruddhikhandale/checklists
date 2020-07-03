@@ -235,6 +235,7 @@ export default function View(props) {
             {checklist &&
                 <Form noValidate validated={validated} className="mb-3">
                     <Form.Group controlId="formGridTitle">
+                        <Form.Label><b>ID</b>: <i>{checklist._id}</i></Form.Label>
                         <InputGroup>
                             <Form.Control
                                 data-testid="checklist-title"
