@@ -1,6 +1,7 @@
-const server = require("./server.js")
+const server = require('./server.js')
+const process = require('process');
 
-const PORT = 8080;
+const APP_PORT = process.env.PORT || 8080
 
 // Start Server
-server.listen(PORT, () => console.log(`Server started on ${PORT}`));
+server.listen(APP_PORT, () => console.log(`Server started on ${APP_PORT}`));
