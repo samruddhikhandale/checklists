@@ -1,4 +1,6 @@
 # ShaDo - Easy to share checklists
+
+## :zap: [Click here to access the app!](https://shadoapp.herokuapp.com/)
 Creating, managing and sharing checklists / todo lists has never been easier.
 
 With ShaDo - the shareable checklists app one can easily create checklists, add or remove todo items, mark them as done on the go.
