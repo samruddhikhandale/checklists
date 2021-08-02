@@ -15,3 +15,4 @@ npm install
 cd ..
 
 echo "Built ShaDoApp"
+exit 1
